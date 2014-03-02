@@ -1,1 +1,3 @@
 include ':App'
+org.gradle.daemon=true
+org.gradle.parallel=true
