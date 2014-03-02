@@ -30,6 +30,7 @@ import java.util.Arrays;
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final String NOT_FOUND_P = "<p>возможно, вы искали:</p>";
     private EditText wordEdit;
     private TextView wordView;
     private Button wordButton;
@@ -72,8 +73,6 @@ public class MainActivity extends ActionBarActivity {
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(wordEdit.getWindowToken(), 0);
     }
-
-
 
 
     private class TranslateTask extends AsyncTask<String, String, Void> {
@@ -133,8 +132,14 @@ public class MainActivity extends ActionBarActivity {
                 String dataAsString = new String(content.toByteArray());
 
                 Document doc = Jsoup.parse(dataAsString);
-                Element masthead = doc.select("div.span10").get(1);
-                return masthead.toString();
+                Element translatedBlock = doc.select("div.span10").get(1);
+                if (translatedBlock.select("p").size() > 2) {
+                    Element secondP = translatedBlock.select("p").get(1);
+                    if (secondP != null && NOT_FOUND_P.equals(secondP.text())) {
+                        translatedBlock = translatedBlock.select("p").first();
+                    }
+                }
+                return translatedBlock.toString();
             } catch (IOException e) {
                 Log.d("error", e.getLocalizedMessage());
                 return "internal error. sorry.";
