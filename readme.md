@@ -10,6 +10,7 @@ This project is similar to:
     gradle :server:jettyRun
 
 This command runs jetty on http://localhost:9000/
-To stop jetty please use:
+
+#To stop jetty please use:
 
     gradle :server:jettyStop
