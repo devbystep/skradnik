@@ -1,8 +1,12 @@
 .idea
 .gradle
 .build
-/App/build
+build
 *.iml
-/local.properties
-/.idea/workspace.xml
+local.properties
 .DS_Store
+.project
+.classpath
+.settings
+target
+classes
