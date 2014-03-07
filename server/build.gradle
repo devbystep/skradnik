@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+
+war.baseName 'skradnik'
+
+dependencies {
+    testCompile 'junit:junit:4.10'
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+    providedCompile 'javax.servlet:jstl:1.2'
+    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.tuckey:urlrewritefilter:4.0.3'
+}
+
+[jettyRunWar, jettyRun]*.httpPort = 9000
+[jettyRun, jettyRunWar, jettyStop]*.stopPort = 9001
+[jettyRun, jettyRunWar, jettyStop]*.stopKey = "y"
+[jettyRunWar, jettyRun]*.daemon = true
+[jettyRunWar, jettyRun]*.contextPath = ""
+
+import org.gradle.api.plugins.jetty.internal.Monitor
+
+[jettyRun, jettyRunWar]*.doLast {
+    /**
+     * THIS IS A WORKAROUND! THE CURRENT VERSION OF THIS TASK DOESN'T START A WATCHER IN DAEMON MODE
+     *
+     * If starting the monitor fails, it may be because the jetty task was updated to fix this issue
+     * When that happens, we shouldn't need the custom task any more
+     *
+     * Copied From: AbstractJettyRunTask
+     */
+    if (getStopPort() != null && getStopPort() > 0 && getStopKey() != null) {
+        Monitor monitor = new Monitor(getStopPort(), getStopKey(), server.getProxiedObject());
+        monitor.start();
+    }
+}
