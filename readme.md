@@ -15,4 +15,4 @@ This command runs jetty on http://localhost:9000/
 
     gradle :server:jettyStop
 
-# Status of build: ![status build](https://www.codeship.io/projects/826f25e0-892b-0131-ec52-0a6a9f4b05f9/status)
+![status build](https://www.codeship.io/projects/826f25e0-892b-0131-ec52-0a6a9f4b05f9/status)
