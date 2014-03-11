@@ -32,17 +32,17 @@
         <from>/rewrite-status</from>
         <to>/test/status/</to>
     </outbound-rule>
-    
-    
-      <rule>
-            <from>/bukva/(.*)</from>
-            <to>/translate</to>
-        </rule>
-        
-         <rule>
-            <from>/slovo/(.+)</from>
-            <to type="redirect">/translate?text=$1</to>
-        </rule>
+
+
+    <rule>
+        <from>/bukva/(.*)</from>
+        <to>/translate</to>
+    </rule>
+
+    <rule>
+        <from>/slovo/(.+)</from>
+        <to type="redirect">/translate?text=$1</to>
+    </rule>
 
 
     <!--

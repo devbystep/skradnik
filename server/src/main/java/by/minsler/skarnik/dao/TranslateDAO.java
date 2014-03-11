@@ -1,19 +1,19 @@
 package by.minsler.skarnik.dao;
 
-import java.util.ArrayList;
-
 import by.minsler.skarnik.beans.Translate;
+
+import java.util.ArrayList;
 
 public interface TranslateDAO {
 
-	ArrayList<Translate> getTranslates();
+    ArrayList<Translate> getTranslates();
 
-	Translate getTranslate(int id);
+    Translate getTranslate(int id);
 
-	boolean addTranslate(Translate translate);
+    boolean addTranslate(Translate translate);
 
-	int deleteTranslate(int id);
+    int deleteTranslate(int id);
 
-	int deleteAllTranslate();
+    int deleteAllTranslate();
 
 }

@@ -1,19 +1,19 @@
 package by.minsler.skarnik.dao;
 
-import java.util.ArrayList;
-
 import by.minsler.skarnik.beans.Word;
+
+import java.util.ArrayList;
 
 public interface WordDAO {
 
-	ArrayList<Word> getWords();
+    ArrayList<Word> getWords();
 
-	Word getWord(int id);
+    Word getWord(int id);
 
-	boolean addWord(Word word);
+    boolean addWord(Word word);
 
-	int deleteWord(int id);
+    int deleteWord(int id);
 
-	int deleteAllWord();
+    int deleteAllWord();
 
 }

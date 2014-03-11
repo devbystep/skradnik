@@ -1,36 +1,36 @@
 package by.minsler.skarnik.beans;
 
-public class Abbreviation{
+public class Abbreviation {
 
-	private int id;
-	private String shortName;
-	private String fullName;
+    private int id;
+    private String shortName;
+    private String fullName;
 
-	public Abbreviation(){
-	}
+    public Abbreviation() {
+    }
 
-	public void setShortName(String shortName){
-		this.shortName = shortName;
-	}
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
 
-	public void setFullName(String fullName){
-		this.fullName = fullName;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public void setId(int id){
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getShortName(){
-		return shortName;
-	}
+    public String getShortName() {
+        return shortName;
+    }
 
-	public String getFullName(){
-		return fullName;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public int getId(){
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
 }

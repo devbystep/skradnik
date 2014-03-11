@@ -1,18 +1,18 @@
 package by.minsler.skarnik.dao;
 
-import java.util.ArrayList;
-
 import by.minsler.skarnik.beans.Line;
+
+import java.util.ArrayList;
 
 public interface LineDAO {
 
-	ArrayList<Line> getLines();
+    ArrayList<Line> getLines();
 
-	Line getLine(int id);
+    Line getLine(int id);
 
-	boolean addLine(Line Line);
+    boolean addLine(Line Line);
 
-	int deleteLine(int id);
+    int deleteLine(int id);
 
-	int deleteAllLine();
+    int deleteAllLine();
 }

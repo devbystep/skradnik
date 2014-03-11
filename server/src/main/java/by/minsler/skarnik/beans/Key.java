@@ -2,33 +2,33 @@ package by.minsler.skarnik.beans;
 
 public class Key {
 
-	private static int nextId;
+    private static int nextId;
 
-	private int id;
+    private int id;
 
-	private String text;
+    private String text;
 
-	public Key() {
-	}
+    public Key() {
+    }
 
-	public Key(boolean autoId) {
-		this.id = nextId++;
-	}
+    public Key(boolean autoId) {
+        this.id = nextId++;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
 }

@@ -16,19 +16,19 @@ function init() {
 }
 
 function doCompletion() {
-		var keyCode = event.keyCode;
-		switch (keyCode) {
-			case(ESCAPE_KEY):
-			case(Down_KEY):
-			case(UP_KEY):
-				return;
-				break;
-		}
-		var url = "autocomplete?action=complete&id=" + completeField.value;
-        req = initRequest();
-        req.open("GET", url, true);
-        req.onreadystatechange = callback;
-        req.send(null);
+    var keyCode = event.keyCode;
+    switch (keyCode) {
+        case(ESCAPE_KEY):
+        case(Down_KEY):
+        case(UP_KEY):
+            return;
+            break;
+    }
+    var url = "autocomplete?action=complete&id=" + completeField.value;
+    req = initRequest();
+    req.open("GET", url, true);
+    req.onreadystatechange = callback;
+    req.send(null);
 }
 
 function initRequest() {
@@ -44,15 +44,15 @@ function initRequest() {
 }
 
 function callback() {
-	clearCheatList();
-	
-	
-	if (req.readyState == 4) {
+    clearCheatList();
+
+
+    if (req.readyState == 4) {
         if (req.status == 200) {
-           parseMessages(req.responseXML);
+            parseMessages(req.responseXML);
         }
     }
-	
+
 }
 
 function appendKey(keyText) {
@@ -78,7 +78,7 @@ function appendKey(keyText) {
 }
 //
 //
-function getElementY(element){
+function getElementY(element) {
 
     var targetTop = 0;
 
@@ -96,9 +96,9 @@ function getElementY(element){
 
 function clearCheatList() {
     if (completeCheatList.getElementsByTagName("li").length > 0) {
-    	completeCheatList.style.display = 'none';
-        for (loop = completeCheatList.childNodes.length -1; loop >= 0 ; loop--) {
-        	completeCheatList.removeChild(completeCheatList.childNodes[loop]);
+        completeCheatList.style.display = 'none';
+        for (loop = completeCheatList.childNodes.length - 1; loop >= 0; loop--) {
+            completeCheatList.removeChild(completeCheatList.childNodes[loop]);
         }
         nextId = 0;
         currentListItemId = 0;
@@ -129,58 +129,58 @@ function parseMessages(responseXML) {
 }
 
 function keyControl() {
-	var keyCode = event.keyCode;
-	//console.log(" keycode: " + keyCode);
-	switch(keyCode){
-		case ESCAPE_KEY:
-			clearCheatList();
-			break;
-		case Down_KEY:
-			selectNextListItem();
-			break;
-		case UP_KEY:
-			selectPreviousListItem();
-			break;
-		default:
-			break;
-	}
+    var keyCode = event.keyCode;
+    //console.log(" keycode: " + keyCode);
+    switch (keyCode) {
+        case ESCAPE_KEY:
+            clearCheatList();
+            break;
+        case Down_KEY:
+            selectNextListItem();
+            break;
+        case UP_KEY:
+            selectPreviousListItem();
+            break;
+        default:
+            break;
+    }
 }
 
 function selectNextListItem() {
-	unselectCurrentListItem();
-	var listItem = document.getElementById('listItem' + getNextListItemId());
-	selectListItem(listItem);
+    unselectCurrentListItem();
+    var listItem = document.getElementById('listItem' + getNextListItemId());
+    selectListItem(listItem);
 }
 
 function selectPreviousListItem() {
-	unselectCurrentListItem();
-	var listItem = document.getElementById('listItem' + getPreviousListItemId());
-	selectListItem(listItem);
+    unselectCurrentListItem();
+    var listItem = document.getElementById('listItem' + getPreviousListItemId());
+    selectListItem(listItem);
 }
 
-function getNextListItemId(){
-	if(currentListItemId >= nextId){
-		currentListItemId =0;
-	}
-	return ++currentListItemId;
+function getNextListItemId() {
+    if (currentListItemId >= nextId) {
+        currentListItemId = 0;
+    }
+    return ++currentListItemId;
 }
 
-function getPreviousListItemId(){
-	if(currentListItemId <= 1){
-		currentListItemId = nextId+1;
-	}
-	return --currentListItemId;
+function getPreviousListItemId() {
+    if (currentListItemId <= 1) {
+        currentListItemId = nextId + 1;
+    }
+    return --currentListItemId;
 }
 
-function unselectCurrentListItem(){
-	if(currentListItemId == 0) return;
-	var currentListItem = document.getElementById('listItem' + currentListItemId);
-	currentListItem.className = '';
+function unselectCurrentListItem() {
+    if (currentListItemId == 0) return;
+    var currentListItem = document.getElementById('listItem' + currentListItemId);
+    currentListItem.className = '';
 }
 
-function selectListItem(listItem){
-	listItem.className='selected';
-	var text = listItem.childNodes[0].nodeValue;
-	//console.log(text);
-	completeField.value = text;
+function selectListItem(listItem) {
+    listItem.className = 'selected';
+    var text = listItem.childNodes[0].nodeValue;
+    //console.log(text);
+    completeField.value = text;
 }

@@ -1,117 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-	<display-name>skarnik.by</display-name>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>skarnik.by</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
-	<context-param>
-		<param-name>jdbcDriverName</param-name>
-		<param-value>org.postgresql.Driver</param-value>
-	</context-param>
+    <context-param>
+        <param-name>jdbcDriverName</param-name>
+        <param-value>org.postgresql.Driver</param-value>
+    </context-param>
 
-	<context-param>
-		<param-name>jdbcUrl</param-name>
-		<param-value>jdbc:postgresql://localhost:5432/skarnik</param-value>
-	</context-param>
+    <context-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/skarnik</param-value>
+    </context-param>
 
-	<context-param>
-		<param-name>jdbcUser</param-name>
-		<param-value>testuser</param-value>
-	</context-param>
+    <context-param>
+        <param-name>jdbcUser</param-name>
+        <param-value>testuser</param-value>
+    </context-param>
 
-	<context-param>
-		<param-name>jdbcPassword</param-name>
-		<param-value>1234</param-value>
-	</context-param>
+    <context-param>
+        <param-name>jdbcPassword</param-name>
+        <param-value>1234</param-value>
+    </context-param>
 
-	<context-param>
-		<param-name>logFileProperties</param-name>
-		<param-value>WEB-INF/log4j.properties</param-value>
-	</context-param>
+    <context-param>
+        <param-name>logFileProperties</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+    </context-param>
 
-	<context-param>
-			<param-name>abbreviationDSLFile</param-name>
-			<param-value>WEB-INF/dsl/UniversalRB_abrv.dsl</param-value>
-	</context-param>
-	
-	<context-param>
-			<param-name>DSLFile</param-name>
-			<param-value>WEB-INF/dsl/UniversalRB.dsl</param-value>
-	</context-param>
-	
-	<context-param>
-			<param-name>xdxffile</param-name>
-			<param-value>WEB-INF/dsl/ru-bel-span.xdxf</param-value>
-	</context-param>
-	
-	
-	<listener>
-		<display-name>Init DB connection</display-name>
-		<listener-class>by.minsler.skarnik.db.ConnectionInit</listener-class>
-	</listener>
+    <context-param>
+        <param-name>abbreviationDSLFile</param-name>
+        <param-value>WEB-INF/dsl/UniversalRB_abrv.dsl</param-value>
+    </context-param>
 
-	<listener>
-		<display-name>Init Log4j</display-name>
-		<listener-class>by.minsler.skarnik.log.Log4jInit</listener-class>
-	</listener>	
+    <context-param>
+        <param-name>DSLFile</param-name>
+        <param-value>WEB-INF/dsl/UniversalRB.dsl</param-value>
+    </context-param>
 
-	<servlet>
-		<servlet-name>AdminController</servlet-name>
-		<servlet-class>by.minsler.skarnik.controller.AdminController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AdminController</servlet-name>
-		<url-pattern>/admin</url-pattern>
-	</servlet-mapping>
+    <context-param>
+        <param-name>xdxffile</param-name>
+        <param-value>WEB-INF/dsl/ru-bel-span.xdxf</param-value>
+    </context-param>
 
-	<servlet>
-		<servlet-name>AbbreviationController</servlet-name>
-		<servlet-class>by.minsler.skarnik.controller.AbbreviationController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AbbreviationController</servlet-name>
-		<url-pattern>/abbreviation</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>CardController</servlet-name>
-		<servlet-class>by.minsler.skarnik.controller.CardController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CardController</servlet-name>
-		<url-pattern>/card</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>ArticleController</servlet-name>
-		<servlet-class>by.minsler.skarnik.controller.ArticleController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ArticleController</servlet-name>
-		<url-pattern>/article</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>TranslateController</servlet-name>
-		<servlet-class>by.minsler.skarnik.controller.TranslateController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TranslateController</servlet-name>
-		<url-pattern>/translate</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>AutoCompleteController</servlet-name>
-		<servlet-class>by.minsler.skarnik.controller.AutoComplete</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AutoCompleteController</servlet-name>
-		<url-pattern>/autocomplete</url-pattern>
-	</servlet-mapping>
-	
-	
-	<filter>
+
+    <listener>
+        <display-name>Init DB connection</display-name>
+        <listener-class>by.minsler.skarnik.db.ConnectionInit</listener-class>
+    </listener>
+
+    <listener>
+        <display-name>Init Log4j</display-name>
+        <listener-class>by.minsler.skarnik.log.Log4jInit</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>by.minsler.skarnik.controller.AdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AbbreviationController</servlet-name>
+        <servlet-class>by.minsler.skarnik.controller.AbbreviationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AbbreviationController</servlet-name>
+        <url-pattern>/abbreviation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CardController</servlet-name>
+        <servlet-class>by.minsler.skarnik.controller.CardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CardController</servlet-name>
+        <url-pattern>/card</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArticleController</servlet-name>
+        <servlet-class>by.minsler.skarnik.controller.ArticleController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArticleController</servlet-name>
+        <url-pattern>/article</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TranslateController</servlet-name>
+        <servlet-class>by.minsler.skarnik.controller.TranslateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TranslateController</servlet-name>
+        <url-pattern>/translate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AutoCompleteController</servlet-name>
+        <servlet-class>by.minsler.skarnik.controller.AutoComplete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoCompleteController</servlet-name>
+        <url-pattern>/autocomplete</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
         <filter-name>UrlRewriteFilter</filter-name>
         <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
     </filter>

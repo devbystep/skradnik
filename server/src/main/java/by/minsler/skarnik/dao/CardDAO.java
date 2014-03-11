@@ -1,18 +1,18 @@
 package by.minsler.skarnik.dao;
 
-import java.util.ArrayList;
-
 import by.minsler.skarnik.beans.Card;
+
+import java.util.ArrayList;
 
 public interface CardDAO {
 
-	ArrayList<Card> getCards();
+    ArrayList<Card> getCards();
 
-	Card getCard(int id);
+    Card getCard(int id);
 
-	boolean addCard(Card card);
+    boolean addCard(Card card);
 
-	int deleteCard(int id);
+    int deleteCard(int id);
 
-	int deleteAllCard();
+    int deleteAllCard();
 }

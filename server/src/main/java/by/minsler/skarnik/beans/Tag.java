@@ -2,27 +2,27 @@ package by.minsler.skarnik.beans;
 
 public class Tag {
 
-	private int id;
+    private int id;
 
-	private String text;
+    private String text;
 
-	public Tag() {
-	}
+    public Tag() {
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
 }
