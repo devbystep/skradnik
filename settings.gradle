@@ -1,2 +1,2 @@
-include ':server'
-include ':App'
+include ':www-server-client'
+include ':droid-client'
