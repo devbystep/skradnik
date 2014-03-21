@@ -20,25 +20,15 @@ public class ArticleKeyDefDAOPostgres implements ArticleKeyDefDAO {
 
     private static ArticleKeyDefDAOPostgres inst;
     private Connection connection = null;
-    private String addArticleQuery = "INSERT INTO article(id, key_id, def_id) VALUES(?,?,?)";
-    private String addKeyQuery = "INSERT INTO key(id, text) VALUES(?,?)";
-    private String addDefQuery = "INSERT INTO def(id, text) VALUES(?,?)";
-    private String getArticleQuery = "SELECT * FROM article WHERE id = ?";
     private String getArticleByKeyIdQuery = "SELECT * FROM article WHERE key_id = ?";
-    private String getKeyQuery = "SELECT * FROM key WHERE id = ?";
     private String getKeyByNameQuery = "SELECT * FROM key WHERE text ilike ?";
     private String getKeyByNameLimitQuery = "SELECT * FROM key WHERE text ilike ? limit 10 ";
     private String getKeyStrictQuery = "SELECT * FROM key WHERE text=?";
     private String getDefQuery = "SELECT * FROM def WHERE id = ?";
-    private PreparedStatement addArticleStatement;
-    private PreparedStatement getArticleStatement;
     private PreparedStatement getArticleByKeyIdStatement;
-    private PreparedStatement addKeyStatement;
-    private PreparedStatement getKeyStatement;
     private PreparedStatement getKeyByNameStatement;
     private PreparedStatement getKeyByNameLimitStatement;
     private PreparedStatement getKeyStrictStatement;
-    private PreparedStatement addDefStatement;
     private PreparedStatement getDefStatement;
 
     private ArticleKeyDefDAOPostgres() {
@@ -48,29 +38,6 @@ public class ArticleKeyDefDAOPostgres implements ArticleKeyDefDAO {
         logger.info("created sql statements");
     }
 
-    private void createStatements() {
-        try {
-            addArticleStatement = connection.prepareStatement(addArticleQuery);
-            getArticleStatement = connection.prepareStatement(getArticleQuery);
-            getArticleByKeyIdStatement = connection
-                    .prepareStatement(getArticleByKeyIdQuery);
-            addKeyStatement = connection.prepareStatement(addKeyQuery);
-            getKeyStatement = connection.prepareStatement(getKeyQuery);
-            getKeyByNameStatement = connection
-                    .prepareStatement(getKeyByNameQuery);
-            getKeyByNameLimitStatement = connection
-                    .prepareStatement(getKeyByNameLimitQuery);
-            getKeyStrictStatement = connection
-                    .prepareStatement(getKeyStrictQuery);
-
-            addDefStatement = connection.prepareStatement(addDefQuery);
-            getDefStatement = connection.prepareStatement(getDefQuery);
-        } catch (SQLException e) {
-            logger.error("creating statements: " + e);
-        }
-
-    }
-
     synchronized public static ArticleKeyDefDAOPostgres getInstance() {
         if (inst == null) {
             inst = new ArticleKeyDefDAOPostgres();
@@ -78,20 +45,21 @@ public class ArticleKeyDefDAOPostgres implements ArticleKeyDefDAO {
         return inst;
     }
 
-    @Override
-    public int addDef(Def def) {
-        int result = 0;
-
+    private void createStatements() {
         try {
-            addDefStatement.setInt(1, def.getId());
-            addDefStatement.setString(2, def.getText());
-            result = addDefStatement.executeUpdate();
+            getArticleByKeyIdStatement = connection
+                    .prepareStatement(getArticleByKeyIdQuery);
+            getKeyByNameStatement = connection
+                    .prepareStatement(getKeyByNameQuery);
+            getKeyByNameLimitStatement = connection
+                    .prepareStatement(getKeyByNameLimitQuery);
+            getKeyStrictStatement = connection
+                    .prepareStatement(getKeyStrictQuery);
 
+            getDefStatement = connection.prepareStatement(getDefQuery);
         } catch (SQLException e) {
-            logger.error("addDef to db: " + e);
+            logger.error("creating statements: " + e);
         }
-
-        return result;
 
     }
 
@@ -117,42 +85,6 @@ public class ArticleKeyDefDAOPostgres implements ArticleKeyDefDAO {
     }
 
     @Override
-    public int addKey(Key key) {
-        int result = 0;
-
-        try {
-            addKeyStatement.setInt(1, key.getId());
-            addKeyStatement.setString(2, key.getText());
-            result = addKeyStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            logger.error("addKey to db: " + e);
-        }
-
-        return result;
-    }
-
-    @Override
-    public Key getKey(int id) {
-        Key key = null;
-
-        try {
-            getKeyStatement.setInt(1, id);
-            ResultSet result = getKeyStatement.executeQuery();
-            if (result.next()) {
-                key = new Key();
-                key.setId(result.getInt("id"));
-                key.setText(result.getString("text"));
-            }
-
-        } catch (SQLException e) {
-            logger.error("getKey from db by id: " + e);
-        }
-
-        return key;
-    }
-
-    @Override
     public List<Key> getKey(String text) {
         ArrayList<Key> list = new ArrayList<Key>();
         String pattern = text + "%";
@@ -172,46 +104,6 @@ public class ArticleKeyDefDAOPostgres implements ArticleKeyDefDAO {
 
         return list;
 
-    }
-
-    @Override
-    public int addArticle(Article article) {
-
-        int result = 0;
-
-        try {
-            addArticleStatement.setInt(1, article.getId());
-            addArticleStatement.setInt(2, article.getKeyId());
-            addArticleStatement.setInt(3, article.getDefId());
-            result = addArticleStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            logger.error("addArticle to db: " + e);
-        }
-
-        return result;
-    }
-
-    @Override
-    public Article getArticle(int id) {
-
-        Article article = null;
-
-        try {
-            getArticleStatement.setInt(1, id);
-            ResultSet result = getArticleStatement.executeQuery();
-            if (result.next()) {
-                article = new Article();
-                article.setId(result.getInt("id"));
-                article.setKeyId(result.getInt("key_id"));
-                article.setDefId(result.getInt("def_id"));
-            }
-
-        } catch (SQLException e) {
-            logger.error("getArticle from db by id: " + e);
-        }
-
-        return article;
     }
 
     @Override

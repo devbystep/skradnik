@@ -1,11 +1,11 @@
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@page import="by.minsler.skarnik.beans.Key" %>
 <%@page import="java.util.List" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>«${param.text}» по-белорусски | Skarnik — русско-белорусский словарь</title>
+    <title>«${param.text}» по-белорусски | Skrarnik — русско-белорусский словарь</title>
     <meta charset="utf-8">
     <meta name="description"
           content="Перевод слова «${param.text}» с русского на белорусский язык. Перевести со Скарником легко и быстро!"/>
@@ -18,37 +18,10 @@
 <div id="container">
 
 
+
     <div id="content">
-        <a href="index.jsp"><img src="img/logo.gif"/></a>
 
-        <div id="search">
-            <div id="searh-line">
-                <form id="main-form" action="translate">
-                    <div id="search-tab" onkeydown="keyControl();">
-                        <input id="translate-input-form" type="text" value="${param.text}"
-                               name="text" onkeyup="doCompletion();" autocomplete="off" onblur="//clearCheatList();">
-                    </div>
-                    <div id="search-button"><input id="translate-button" type="submit" value="перевести"></div>
-                </form>
-            </div>
-            <div id="cheat">
-                <ul id="cheat-list">
-                </ul>
-            </div>
-
-        </div>
-
-        <table>
-            <tbody>
-            <tr>
-                <td id="auto-row" colspan="2">
-                    <table id="complete-table">
-                    </table>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
+    <jsp:include page="/WEB-INF/template/search_input.jsp"/>
 
         <div id="result">
             <%

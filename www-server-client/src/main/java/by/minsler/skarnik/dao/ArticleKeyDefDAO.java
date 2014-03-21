@@ -8,23 +8,13 @@ import java.util.List;
 
 public interface ArticleKeyDefDAO {
 
-    int addDef(Def def);
-
     Def getDef(int id);
-
-    int addKey(Key key);
-
-    Key getKey(int id);
 
     Key getKeyStrict(String text);
 
     List<Key> getKey(String text);
 
     List<Key> getKeyLimit(String text);
-
-    int addArticle(Article article);
-
-    Article getArticle(int id);
 
     Article getArticleByKeyId(int keyId);
 }

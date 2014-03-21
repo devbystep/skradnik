@@ -12,7 +12,7 @@
         href="translate?letter=Э">Э</a> <a href="translate?letter=Ю">Ю</a> <a href="translate?letter=Я">Я</a></p>
     <br>
 
-    <p>Русско-белорусский словарь «Скарнік» | слов в базе: 107 106<br><a href="mailto:lit.serge2@gmail.com">lit.serge2@gmail.com</a>
+    <p>Русско-белорусский словарь «Скраднік» | слов в базе: 107 106<br><a href="mailto:lit.serge2@gmail.com">https://bitbucket.org/devbystep/skradnik</a>
     </p>
     <br>
 </div>

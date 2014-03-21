@@ -7,6 +7,7 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- context param to connect to postgresql database -->
     <context-param>
         <param-name>jdbcDriverName</param-name>
         <param-value>org.postgresql.Driver</param-value>
@@ -19,81 +20,33 @@
 
     <context-param>
         <param-name>jdbcUser</param-name>
-        <param-value>testuser</param-value>
+        <param-value>minsler</param-value>
     </context-param>
 
     <context-param>
         <param-name>jdbcPassword</param-name>
-        <param-value>1234</param-value>
+        <param-value></param-value>
     </context-param>
 
+    <!--Path to log4j properites file-->
     <context-param>
         <param-name>logFileProperties</param-name>
         <param-value>WEB-INF/log4j.properties</param-value>
     </context-param>
 
-    <context-param>
-        <param-name>abbreviationDSLFile</param-name>
-        <param-value>WEB-INF/dsl/UniversalRB_abrv.dsl</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>DSLFile</param-name>
-        <param-value>WEB-INF/dsl/UniversalRB.dsl</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>xdxffile</param-name>
-        <param-value>WEB-INF/dsl/ru-bel-span.xdxf</param-value>
-    </context-param>
-
-
+    <!--Listener for init db connection-->
     <listener>
         <display-name>Init DB connection</display-name>
         <listener-class>by.minsler.skarnik.db.ConnectionInit</listener-class>
     </listener>
 
+    <!--Listner to init logger-->
     <listener>
         <display-name>Init Log4j</display-name>
         <listener-class>by.minsler.skarnik.log.Log4jInit</listener-class>
     </listener>
 
-    <servlet>
-        <servlet-name>AdminController</servlet-name>
-        <servlet-class>by.minsler.skarnik.controller.AdminController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminController</servlet-name>
-        <url-pattern>/admin</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AbbreviationController</servlet-name>
-        <servlet-class>by.minsler.skarnik.controller.AbbreviationController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AbbreviationController</servlet-name>
-        <url-pattern>/abbreviation</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>CardController</servlet-name>
-        <servlet-class>by.minsler.skarnik.controller.CardController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CardController</servlet-name>
-        <url-pattern>/card</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ArticleController</servlet-name>
-        <servlet-class>by.minsler.skarnik.controller.ArticleController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ArticleController</servlet-name>
-        <url-pattern>/article</url-pattern>
-    </servlet-mapping>
-
+    <!--Controller to translate world-->
     <servlet>
         <servlet-name>TranslateController</servlet-name>
         <servlet-class>by.minsler.skarnik.controller.TranslateController</servlet-class>
@@ -103,6 +56,7 @@
         <url-pattern>/translate</url-pattern>
     </servlet-mapping>
 
+    <!--Controller to using autocomplete: for getting keys by first letters -->
     <servlet>
         <servlet-name>AutoCompleteController</servlet-name>
         <servlet-class>by.minsler.skarnik.controller.AutoComplete</servlet-class>
@@ -111,6 +65,7 @@
         <servlet-name>AutoCompleteController</servlet-name>
         <url-pattern>/autocomplete</url-pattern>
     </servlet-mapping>
+
 
 
     <filter>
