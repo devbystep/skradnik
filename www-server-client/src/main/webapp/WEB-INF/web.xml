@@ -15,7 +15,7 @@
 
     <context-param>
         <param-name>jdbcUrl</param-name>
-        <param-value>jdbc:postgresql://localhost:5432/skarnik</param-value>
+        <param-value>jdbc:postgresql://localhost:5432/skradnik</param-value>
     </context-param>
 
     <context-param>
@@ -65,18 +65,5 @@
         <servlet-name>AutoCompleteController</servlet-name>
         <url-pattern>/autocomplete</url-pattern>
     </servlet-mapping>
-
-
-
-    <filter>
-        <filter-name>UrlRewriteFilter</filter-name>
-        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>UrlRewriteFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
 
 </web-app>
