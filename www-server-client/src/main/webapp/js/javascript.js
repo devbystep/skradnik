@@ -24,7 +24,7 @@ function doCompletion() {
             return;
             break;
     }
-    var url = "autocomplete?action=complete&id=" + completeField.value;
+    var url = "autocomplete?action=complete&text=" + completeField.value;
     req = initRequest();
     req.open("GET", url, true);
     req.onreadystatechange = callback;

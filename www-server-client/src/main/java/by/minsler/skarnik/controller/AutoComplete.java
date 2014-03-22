@@ -20,14 +20,14 @@ public class AutoComplete extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
 
-        String id = request.getParameter("id");
+        String text = request.getParameter("text");
         StringBuilder sb = new StringBuilder();
 
         ArticleKeyDefDAO akd = ArticleKeyDefDAOPostgres.getInstance();
         List<Key> list = null;
 
-        if (id != null && !id.trim().equals("")) {
-            list = akd.getKeyLimit(id);
+        if (text != null && !text.trim().equals("")) {
+            list = akd.getKeyLimit(text);
             if (list.size() > 0) {
                 sb.append("<keys>");
                 for (Key key : list) {
