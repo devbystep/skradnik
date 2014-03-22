@@ -1,6 +1,6 @@
 package by.minsler.skarnik.dao;
 
-import by.minsler.skarnik.beans.Translation;
+import by.minsler.skarnik.entity.Translation;
 import by.minsler.skarnik.db.DBType;
 
 import java.sql.Connection;

@@ -5,7 +5,7 @@ import by.minsler.skarnik.dao.MigrationDAO;
 import by.minsler.skarnik.dao.MigrationDAOSQL;
 import by.minsler.skarnik.dao.TranslationCursor;
 import by.minsler.skarnik.db.DBType;
-import by.minsler.skarnik.beans.Translation;
+import by.minsler.skarnik.entity.Translation;
 import org.apache.commons.dbutils.DbUtils;
 
 import java.sql.Connection;

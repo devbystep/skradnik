@@ -1,6 +1,6 @@
 package by.minsler.skarnik.controller;
 
-import by.minsler.skarnik.beans.Translation;
+import by.minsler.skarnik.entity.Translation;
 import by.minsler.skarnik.dao.DAOException;
 import by.minsler.skarnik.dao.MigrationDAO;
 import by.minsler.skarnik.db.DAOInitializer;

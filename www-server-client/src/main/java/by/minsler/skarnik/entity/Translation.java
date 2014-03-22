@@ -1,4 +1,4 @@
-package by.minsler.skarnik.beans;
+package by.minsler.skarnik.entity;
 
 /**
  * Class to encapsulate information about word and translation for it.

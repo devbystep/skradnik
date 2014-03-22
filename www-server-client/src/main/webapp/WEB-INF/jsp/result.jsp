@@ -1,5 +1,4 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<%@page import="by.minsler.skarnik.beans.Key" %>
 <%@page import="java.util.List" %>
 
 <!DOCTYPE html>

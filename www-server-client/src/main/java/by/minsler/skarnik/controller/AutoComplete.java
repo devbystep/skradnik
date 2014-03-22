@@ -1,6 +1,5 @@
 package by.minsler.skarnik.controller;
 
-import by.minsler.skarnik.beans.Key;
 import by.minsler.skarnik.dao.*;
 import by.minsler.skarnik.db.DAOInitializer;
 import org.apache.log4j.Logger;
