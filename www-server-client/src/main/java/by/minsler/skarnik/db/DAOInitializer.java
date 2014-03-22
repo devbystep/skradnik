@@ -1,6 +1,5 @@
 package by.minsler.skarnik.db;
 
-import by.minsler.skarnik.dao.DAOException;
 import by.minsler.skarnik.dao.MigrationDAO;
 import by.minsler.skarnik.dao.MigrationDAOSQL;
 
@@ -33,12 +32,8 @@ public class DAOInitializer implements ServletContextListener {
             migrationDAO = new MigrationDAOSQL(connection, DBType.sqlite);
             context.log("jdbc driver: connection created");
             context.setAttribute("connection", connection);
-        } catch (ClassNotFoundException e) {
-            context.log("jdbc driver: Class not found: " + e);
-        } catch (SQLException e) {
-            context.log("sql exception: " + e);
-        } catch (DAOException e) {
-            context.log("error creating dao");
+        } catch (Exception e) {
+            throw new RuntimeException("Error initialization db: " + e.getMessage());
         }
     }
 

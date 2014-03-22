@@ -15,7 +15,7 @@
 
     <context-param>
         <param-name>jdbcUrl</param-name>
-        <param-value>jdbc:sqlite:/Volumes/data/minsler/projects/skradnik/database/skradnik.db</param-value>
+        <param-value>jdbc:sqlite:database/skradnik.db</param-value>
     </context-param>
 
     <!--Path to log4j properites file-->
