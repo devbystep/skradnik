@@ -1,8 +1,8 @@
 package by.minsler.skarnik.controller;
 
 import by.minsler.skarnik.beans.Key;
-import by.minsler.skarnik.dao.ArticleKeyDefDAO;
-import by.minsler.skarnik.dao.ArticleKeyDefDAOPostgres;
+import by.minsler.skarnik.dao.*;
+import by.minsler.skarnik.db.DAOInitializer;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -23,33 +23,36 @@ public class AutoComplete extends HttpServlet {
         String text = request.getParameter("text");
         StringBuilder sb = new StringBuilder();
 
-        ArticleKeyDefDAO akd = ArticleKeyDefDAOPostgres.getInstance();
-        List<Key> list = null;
+        MigrationDAO migrationDAO = DAOInitializer.getMigrationDAO();
 
-        if (text != null && !text.trim().equals("")) {
-            list = akd.getKeyLimit(text);
-            if (list.size() > 0) {
-                sb.append("<keys>");
-                for (Key key : list) {
-                    sb.append("<key>");
-                    sb.append("<text>" + key.getText() + "</text>");
-                    sb.append("</key>");
+        try {
+            if (text != null && !text.trim().equals("")) {
+                List<String> words = migrationDAO.getWords(text, 10);
+                if (words.size() > 0) {
+                    sb.append("<keys>");
+                    for (String word : words) {
+                        sb.append("<key>");
+                        sb.append("<text>" + word + "</text>");
+                        sb.append("</key>");
+                    }
+                    sb.append("</keys>");
                 }
-                sb.append("</keys>");
             }
-        }
 
-        if (sb.length() != 0) {
+            if (sb.length() != 0) {
 
-            logger.info(sb);
+                logger.info(sb);
 
-            response.setContentType("text/xml");
-            response.setCharacterEncoding("utf-8");
-            response.setHeader("Cache-Control", "no-cache");
-            response.getWriter().write(sb.toString());
+                response.setContentType("text/xml");
+                response.setCharacterEncoding("utf-8");
+                response.setHeader("Cache-Control", "no-cache");
+                response.getWriter().write(sb.toString());
 
-        } else {
-            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            } else {
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }
+        }catch (DAOException e){
+            throw new ServletException(e);
         }
 
     }

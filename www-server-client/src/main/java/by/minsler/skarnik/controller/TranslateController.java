@@ -1,10 +1,9 @@
 package by.minsler.skarnik.controller;
 
-import by.minsler.skarnik.beans.Article;
-import by.minsler.skarnik.beans.Def;
-import by.minsler.skarnik.beans.Key;
-import by.minsler.skarnik.dao.ArticleKeyDefDAO;
-import by.minsler.skarnik.dao.ArticleKeyDefDAOPostgres;
+import by.minsler.skarnik.beans.Translation;
+import by.minsler.skarnik.dao.DAOException;
+import by.minsler.skarnik.dao.MigrationDAO;
+import by.minsler.skarnik.db.DAOInitializer;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -24,44 +23,46 @@ public class TranslateController extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
 
         logger.info("doGet translate ");
-        ArticleKeyDefDAO akd = ArticleKeyDefDAOPostgres.getInstance();
+        MigrationDAO migrationDAO = DAOInitializer.getMigrationDAO();
         String text = request.getParameter("text");
         String strict = request.getParameter("strict");
         logger.info("translate for " + text + "; strict: " + strict);
         String letter = request.getParameter("letter");
-        if (letter != null && !letter.trim().equals("")) {
-            List<Key> list = akd.getKey(letter);
-            int size = list.size();
-            if (size > 1) {
-                request.setAttribute("list", list);
-            }
+        try {
+            if (letter != null && !letter.trim().equals("")) {
+                List<String> words = migrationDAO.getWords(letter, 1000000);
+                int size = words.size();
+                if (size > 1) {
+                    request.setAttribute("list", words);
+                }
 
-        } else if (text != null && !text.trim().equals("")) {
+            } else if (text != null && !text.trim().equals("")) {
 
-            Key key = akd.getKeyStrict(text);
-            if (key != null) {
-                Article article = akd.getArticleByKeyId(key.getId());
-                Def def = akd.getDef(article.getDefId());
-                request.setAttribute("keyText", key.getText());
-                request.setAttribute("defText", def.getText());
-            } else {
-                if (strict == null) {
-                    text = text.trim();
-                    List<Key> list = akd.getKey(text);
-                    int size = list.size();
-                    logger.info("size of list of key : " + size);
-                    if (size == 0) {
-                    } else if (list.size() == 1) {
-                        key = list.get(0);
-                        Article article = akd.getArticleByKeyId(key.getId());
-                        Def def = akd.getDef(article.getDefId());
-                        request.setAttribute("keyText", key.getText());
-                        request.setAttribute("defText", def.getText());
-                    } else {
-                        request.setAttribute("list", list);
+                Translation translation = migrationDAO.getTranslation(text);
+
+                if (translation != null) {
+                    request.setAttribute("keyText", translation.getWord());
+                    request.setAttribute("defText", translation.getTranslation());
+                } else {
+                    if (strict == null) {
+                        text = text.trim();
+                        List<String> list = migrationDAO.getWords(text, 10);
+                        int size = list.size();
+                        logger.info("size of list of key : " + size);
+                        if (size == 0) {
+                        } else if (list.size() == 1) {
+                            text = list.get(0);
+                            translation = migrationDAO.getTranslation(text);
+                            request.setAttribute("keyText", translation.getWord());
+                            request.setAttribute("defText", translation.getTranslation());
+                        } else {
+                            request.setAttribute("list", list);
+                        }
                     }
                 }
             }
+        } catch (DAOException e) {
+            throw new ServletException(e);
         }
 
         RequestDispatcher result = request

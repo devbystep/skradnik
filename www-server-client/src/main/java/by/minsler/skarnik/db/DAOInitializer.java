@@ -1,5 +1,9 @@
 package by.minsler.skarnik.db;
 
+import by.minsler.skarnik.dao.DAOException;
+import by.minsler.skarnik.dao.MigrationDAO;
+import by.minsler.skarnik.dao.MigrationDAOSQL;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -8,30 +12,34 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class ConnectionInit implements ServletContextListener {
+public class DAOInitializer implements ServletContextListener {
 
     private static Connection connection = null;
     private static ServletContext context = null;
+    private static MigrationDAO migrationDAO;
+
+    public static MigrationDAO getMigrationDAO() {
+        return migrationDAO;
+    }
 
     public void contextInitialized(ServletContextEvent event) {
         context = event.getServletContext();
         String jdbcDriverName = context.getInitParameter("jdbcDriverName");
         String jdbcUrl = context.getInitParameter("jdbcUrl");
-        String jdbcUser = context.getInitParameter("jdbcUser");
-        String jdbcPassword = context.getInitParameter("jdbcPassword");
 
         try {
             Class.forName(jdbcDriverName);
-            connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
+            connection = DriverManager.getConnection(jdbcUrl);
+            migrationDAO = new MigrationDAOSQL(connection, DBType.sqlite);
             context.log("jdbc driver: connection created");
             context.setAttribute("connection", connection);
         } catch (ClassNotFoundException e) {
             context.log("jdbc driver: Class not found: " + e);
         } catch (SQLException e) {
             context.log("sql exception: " + e);
+        } catch (DAOException e) {
+            context.log("error creating dao");
         }
-
-
     }
 
     public void contextDestroyed(ServletContextEvent event) {
@@ -43,9 +51,5 @@ public class ConnectionInit implements ServletContextListener {
                 context.log("sql exception: " + e);
             }
         }
-    }
-
-    public static Connection getConnection() {
-        return connection;
     }
 }

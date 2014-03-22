@@ -10,11 +10,8 @@ dependencies {
     testCompile 'junit:junit:4.10'
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
     providedCompile 'javax.servlet:jstl:1.2'
-    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
     compile 'log4j:log4j:1.2.17'
-    compile 'org.tuckey:urlrewritefilter:4.0.3'
     compile 'org.xerial:sqlite-jdbc:3.7.2'
-    compile 'commons-io:commons-io:2.4'
     compile 'commons-dbutils:commons-dbutils:1.5'
 }
 

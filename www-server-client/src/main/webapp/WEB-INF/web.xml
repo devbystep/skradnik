@@ -10,22 +10,12 @@
     <!-- context param to connect to postgresql database -->
     <context-param>
         <param-name>jdbcDriverName</param-name>
-        <param-value>org.postgresql.Driver</param-value>
+        <param-value>org.sqlite.JDBC</param-value>
     </context-param>
 
     <context-param>
         <param-name>jdbcUrl</param-name>
-        <param-value>jdbc:postgresql://localhost:5432/skradnik</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>jdbcUser</param-name>
-        <param-value>minsler</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>jdbcPassword</param-name>
-        <param-value></param-value>
+        <param-value>jdbc:sqlite:/Volumes/data/minsler/projects/skradnik/database/skradnik.db</param-value>
     </context-param>
 
     <!--Path to log4j properites file-->
@@ -37,7 +27,7 @@
     <!--Listener for init db connection-->
     <listener>
         <display-name>Init DB connection</display-name>
-        <listener-class>by.minsler.skarnik.db.ConnectionInit</listener-class>
+        <listener-class>by.minsler.skarnik.db.DAOInitializer</listener-class>
     </listener>
 
     <!--Listner to init logger-->

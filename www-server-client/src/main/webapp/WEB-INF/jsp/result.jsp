@@ -25,10 +25,10 @@
 
         <div id="result">
             <%
-                List<Key> list = (List<Key>) request.getAttribute("list");
-                if (list != null) {
-                    for (Key key : list) {
-                        String text = key.getText();
+                List<String> words = (List<String>) request.getAttribute("list");
+                if (words != null) {
+                    for (String word : words) {
+                        String text = word;
             %>
             <div class="strictlink">
                 <a href="translate?text=<%=text%>&strict=yes"><%=text%>
