@@ -1,9 +1,9 @@
-package by.minsler.skarnik.controller;
+package by.minsler.skradnik.controller;
 
-import by.minsler.skarnik.entity.Translation;
-import by.minsler.skarnik.dao.DAOException;
-import by.minsler.skarnik.dao.MigrationDAO;
-import by.minsler.skarnik.db.DAOInitializer;
+import by.minsler.skradnik.dao.TranslationDAO;
+import by.minsler.skradnik.entity.Translation;
+import by.minsler.skradnik.dao.DAOException;
+import by.minsler.skradnik.db.DAOInitializer;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +23,7 @@ public class TranslateController extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
 
         logger.info("doGet translate ");
-        MigrationDAO migrationDAO = DAOInitializer.getMigrationDAO();
+        TranslationDAO migrationDAO = DAOInitializer.getMigrationDAO();
         String text = request.getParameter("text");
         String strict = request.getParameter("strict");
         logger.info("translate for " + text + "; strict: " + strict);

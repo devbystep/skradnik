@@ -1,15 +1,17 @@
-package by.minsler.skarnik.dao;
+package by.minsler.skradnik.dao;
 
-import by.minsler.skarnik.entity.Translation;
+import by.minsler.skradnik.entity.Translation;
 
 import java.util.List;
 
 /**
- * Interface for migration.
+ * Interface for working with Translation object.
+ * Using for migration too.
  *
  * @author Dzmitry Misiuk
+ * @see by.minsler.skradnik.entity.Translation
  */
-public interface MigrationDAO {
+public interface TranslationDAO {
 
     TranslationCursor getTranslations() throws DAOException;
 

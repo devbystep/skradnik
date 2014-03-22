@@ -1,4 +1,4 @@
-package by.minsler.skarnik.log;
+package by.minsler.skradnik.log;
 
 import org.apache.log4j.PropertyConfigurator;
 

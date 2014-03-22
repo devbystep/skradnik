@@ -1,11 +1,11 @@
-package by.minsler.skarnik.migration;
+package by.minsler.skradnik.migration;
 
-import by.minsler.skarnik.dao.DAOException;
-import by.minsler.skarnik.dao.MigrationDAO;
-import by.minsler.skarnik.dao.MigrationDAOSQL;
-import by.minsler.skarnik.dao.TranslationCursor;
-import by.minsler.skarnik.db.DBType;
-import by.minsler.skarnik.entity.Translation;
+import by.minsler.skradnik.dao.DAOException;
+import by.minsler.skradnik.dao.TranslationDAO;
+import by.minsler.skradnik.dao.MigrationDAOSQL;
+import by.minsler.skradnik.dao.TranslationCursor;
+import by.minsler.skradnik.db.DBType;
+import by.minsler.skradnik.entity.Translation;
 import org.apache.commons.dbutils.DbUtils;
 
 import java.sql.Connection;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /**
  * @author Dzmitry Misiuk
  */
-public class PostgresToSQLite {
+public class PostgresToSQLiteTool {
 
     public static final String POSTGRE_DB_URL = "jdbc:postgresql://localhost:5432/skradnik";
     public static final String LITE_DB_URL = "jdbc:sqlite:" +
@@ -33,8 +33,8 @@ public class PostgresToSQLite {
             Class.forName(LITE_DRIVER_NAME);
             liteConnection = DriverManager.getConnection(LITE_DB_URL);
             postgreConnection = DriverManager.getConnection(POSTGRE_DB_URL);
-            MigrationDAO liteDAO = new MigrationDAOSQL(liteConnection, DBType.sqlite);
-            MigrationDAO postgreDAO = new MigrationDAOSQL(postgreConnection, DBType.postgresql);
+            TranslationDAO liteDAO = new MigrationDAOSQL(liteConnection, DBType.sqlite);
+            TranslationDAO postgreDAO = new MigrationDAOSQL(postgreConnection, DBType.postgresql);
 
             TranslationCursor cursor = postgreDAO.getTranslations();
             Translation translation;

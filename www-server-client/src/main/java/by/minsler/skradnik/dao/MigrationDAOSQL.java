@@ -1,7 +1,7 @@
-package by.minsler.skarnik.dao;
+package by.minsler.skradnik.dao;
 
-import by.minsler.skarnik.entity.Translation;
-import by.minsler.skarnik.db.DBType;
+import by.minsler.skradnik.entity.Translation;
+import by.minsler.skradnik.db.DBType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Dzmitry Misiuk
  */
-public class MigrationDAOSQL implements MigrationDAO {
+public class MigrationDAOSQL implements TranslationDAO {
 
     public static final String GET_TRANSLATION_BY_ID_QUERY =
             "SELECT F_ID, F_WORD, F_TRANSLATION FROM T_TRANSLATION WHERE F_ID = ?";

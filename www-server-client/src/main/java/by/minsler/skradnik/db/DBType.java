@@ -1,4 +1,4 @@
-package by.minsler.skarnik.db;
+package by.minsler.skradnik.db;
 
 /**
  * @author Dzmitry Misiuk

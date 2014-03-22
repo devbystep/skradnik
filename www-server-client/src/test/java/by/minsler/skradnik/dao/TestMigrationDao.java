@@ -1,7 +1,7 @@
-package by.minsler.skarnik.dao;
+package by.minsler.skradnik.dao;
 
-import by.minsler.skarnik.entity.Translation;
-import by.minsler.skarnik.db.DBType;
+import by.minsler.skradnik.entity.Translation;
+import by.minsler.skradnik.db.DBType;
 import org.apache.commons.dbutils.DbUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -33,7 +33,7 @@ public class TestMigrationDao extends Assert {
 
             Class.forName(LITE_DRIVER_NAME);
             liteConnection = DriverManager.getConnection(LITE_DB_URL);
-            MigrationDAO liteDAO = new MigrationDAOSQL(liteConnection, DBType.sqlite);
+            TranslationDAO liteDAO = new MigrationDAOSQL(liteConnection, DBType.sqlite);
         } finally {
             DbUtils.closeQuietly(liteConnection);
             DbUtils.closeQuietly(postgreConnection);
@@ -44,7 +44,7 @@ public class TestMigrationDao extends Assert {
     public void testGettingWordAndTranslationPattern() throws Exception {
         Class.forName(LITE_DRIVER_NAME);
         this.connection = DriverManager.getConnection(LITE_DB_URL);
-        MigrationDAO dao = new MigrationDAOSQL(connection, DBType.sqlite);
+        TranslationDAO dao = new MigrationDAOSQL(connection, DBType.sqlite);
         List<String> words = dao.getWords("ом", 10);
         assertTrue(words.size() > 2);
         Translation translation = dao.getTranslation(words.get(0));

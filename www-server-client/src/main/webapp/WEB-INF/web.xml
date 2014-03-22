@@ -27,19 +27,19 @@
     <!--Listener for init db connection-->
     <listener>
         <display-name>Init DB connection</display-name>
-        <listener-class>by.minsler.skarnik.db.DAOInitializer</listener-class>
+        <listener-class>by.minsler.skradnik.db.DAOInitializer</listener-class>
     </listener>
 
     <!--Listner to init logger-->
     <listener>
         <display-name>Init Log4j</display-name>
-        <listener-class>by.minsler.skarnik.log.Log4jInit</listener-class>
+        <listener-class>by.minsler.skradnik.log.Log4jInit</listener-class>
     </listener>
 
     <!--Controller to translate world-->
     <servlet>
         <servlet-name>TranslateController</servlet-name>
-        <servlet-class>by.minsler.skarnik.controller.TranslateController</servlet-class>
+        <servlet-class>by.minsler.skradnik.controller.TranslateController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TranslateController</servlet-name>
@@ -49,7 +49,7 @@
     <!--Controller to using autocomplete: for getting keys by first letters -->
     <servlet>
         <servlet-name>AutoCompleteController</servlet-name>
-        <servlet-class>by.minsler.skarnik.controller.AutoComplete</servlet-class>
+        <servlet-class>by.minsler.skradnik.controller.AutoCompleteController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AutoCompleteController</servlet-name>

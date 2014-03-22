@@ -1,7 +1,7 @@
-package by.minsler.skarnik.db;
+package by.minsler.skradnik.db;
 
-import by.minsler.skarnik.dao.MigrationDAO;
-import by.minsler.skarnik.dao.MigrationDAOSQL;
+import by.minsler.skradnik.dao.TranslationDAO;
+import by.minsler.skradnik.dao.MigrationDAOSQL;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -15,9 +15,9 @@ public class DAOInitializer implements ServletContextListener {
 
     private static Connection connection = null;
     private static ServletContext context = null;
-    private static MigrationDAO migrationDAO;
+    private static TranslationDAO migrationDAO;
 
-    public static MigrationDAO getMigrationDAO() {
+    public static TranslationDAO getMigrationDAO() {
         return migrationDAO;
     }
 

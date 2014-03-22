@@ -1,7 +1,7 @@
-package by.minsler.skarnik.controller;
+package by.minsler.skradnik.controller;
 
-import by.minsler.skarnik.dao.*;
-import by.minsler.skarnik.db.DAOInitializer;
+import by.minsler.skradnik.dao.*;
+import by.minsler.skradnik.db.DAOInitializer;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class AutoComplete extends HttpServlet {
+public class AutoCompleteController extends HttpServlet {
 
-    Logger logger = Logger.getLogger(AutoComplete.class);
+    Logger logger = Logger.getLogger(AutoCompleteController.class);
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -22,7 +22,7 @@ public class AutoComplete extends HttpServlet {
         String text = request.getParameter("text");
         StringBuilder sb = new StringBuilder();
 
-        MigrationDAO migrationDAO = DAOInitializer.getMigrationDAO();
+        TranslationDAO migrationDAO = DAOInitializer.getMigrationDAO();
 
         try {
             if (text != null && !text.trim().equals("")) {

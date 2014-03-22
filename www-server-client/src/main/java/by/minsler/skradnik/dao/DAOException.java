@@ -1,4 +1,4 @@
-package by.minsler.skarnik.dao;
+package by.minsler.skradnik.dao;
 
 /**
  * @author Dzmitry Misiuk

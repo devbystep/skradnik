@@ -1,6 +1,6 @@
-package by.minsler.skarnik.dao;
+package by.minsler.skradnik.dao;
 
-import by.minsler.skarnik.entity.Translation;
+import by.minsler.skradnik.entity.Translation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +17,12 @@ public class TranslationCursor {
         this.rs = rs;
     }
 
+    /**
+     * Returns next translation or null if not exist.
+     *
+     * @return next translation or null
+     * @throws SQLException
+     */
     public Translation next() throws SQLException {
         if (rs.next()) {
             Translation translation;
@@ -30,6 +36,11 @@ public class TranslationCursor {
         }
     }
 
+    /**
+     * Closes cursor?.
+     *
+     * @throws SQLException
+     */
     public void close() throws SQLException {
         this.rs.close();
     }
