@@ -15,7 +15,7 @@ This project is similar to:
 
 ###Restore dump to created database###
 
-	psql -h localhost skradnik -f dabase/skradnik.sql
+	psql -h localhost skradnik -f database/skradnik.sql
 
 ###Configure connection to postgresql databaase###
 
