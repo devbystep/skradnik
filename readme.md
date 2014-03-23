@@ -3,6 +3,17 @@ Currently project is deployed on OpenShift platform.
 [skarnik-minsler.rhcloud.com](http://skarnik-minsler.rhcloud.com/)
 
 
+##To build project##
+*android client is disabled for now*
+
+Unix
+
+     ./gradlew clean build
+
+Windows
+
+     gradlew.bat clean build
+
 This project is similar to:
 
 * front-end client for android [google play](https://play.google.com/store/apps/details?id=by.skarnik.smolik)
