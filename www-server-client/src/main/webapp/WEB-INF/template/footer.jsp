@@ -16,7 +16,7 @@
         <p>Русско-белорусский словарь «Скраднік» | слов в базе: 107 106</p>
         <br>
         <p><a href="https://bitbucket.org/devbystep/skradnik">Исходный ко на <b>BitBucket</b></a></p>
-        <p><a href="droid/skradnik.apk" >Приложение для <b>Android</b></a></p>
+        <p><a href="https://bitbucket.org/devbystep/skradnik/downloads/skradnik.apk" >Приложение для <b>Android</b></a></p>
     </ul>
     <br>
 </div>
