@@ -1,3 +1,8 @@
+Currently project is deployed on OpenShift platform.
+
+[skarnik-minsler.rhcloud.com](http://skarnik-minsler.rhcloud.com/)
+
+
 This project is similar to:
 
 * front-end client for android [google play](https://play.google.com/store/apps/details?id=by.skarnik.smolik)
