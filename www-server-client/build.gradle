@@ -7,6 +7,7 @@ apply plugin: 'jetty'
 war.baseName 'skradnik'
 
 dependencies {
+    compile project(':skradnik-shared')
     testCompile 'junit:junit:4.10'
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
     providedCompile 'javax.servlet:jstl:1.2'
