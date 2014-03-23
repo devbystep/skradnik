@@ -13,6 +13,7 @@ dependencies {
     compile 'log4j:log4j:1.2.17'
     compile 'org.xerial:sqlite-jdbc:3.7.2'
     compile 'commons-dbutils:commons-dbutils:1.5'
+    compile 'org.springframework:spring-web:4.0.2.RELEASE'
 }
 
 [jettyRunWar, jettyRun]*.httpPort = 9000

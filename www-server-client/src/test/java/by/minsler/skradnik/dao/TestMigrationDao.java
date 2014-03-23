@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class TestMigrationDao extends Assert {
 
-    public static final String LITE_DB_URL = "jdbc:sqlite:../database/skradnik.db";
+    public static final String LITE_DB_URL = "jdbc:sqlite::resource:skradnik.db";
     public static final String LITE_DRIVER_NAME = "org.sqlite.JDBC";
     private static Logger logger = Logger.getAnonymousLogger();
 

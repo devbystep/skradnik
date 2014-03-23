@@ -39,9 +39,6 @@ public class AutoCompleteController extends HttpServlet {
             }
 
             if (sb.length() != 0) {
-
-                logger.info(sb);
-
                 response.setContentType("text/xml");
                 response.setCharacterEncoding("utf-8");
                 response.setHeader("Cache-Control", "no-cache");
