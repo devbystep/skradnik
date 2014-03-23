@@ -1,3 +1,13 @@
+##Project description##
+
+####This project is similar to:####
+
+* front-end client for android [google play](https://play.google.com/store/apps/details?id=by.skarnik.smolik)
+* front-end web [skarnik.by](http://www.skarnik.by)
+
+~~My old implementation of server+web client currently is available on [github](https://github.com/minsler/skarnik.by)~~ in the 'wwww-server-client' directory.
+
+
 ###Currently project is deployed on OpenShift platform.###
 
 [skarnik-minsler.rhcloud.com](http://skarnik-minsler.rhcloud.com/)
@@ -14,12 +24,6 @@ Windows
 
      gradlew.bat clean build
 
-This project is similar to:
-
-* front-end client for android [google play](https://play.google.com/store/apps/details?id=by.skarnik.smolik)
-* front-end web [skarnik.by](http://www.skarnik.by)
-
-~~My old implementation of server+web client currently is available on [github](https://github.com/minsler/skarnik.by)~~ in the 'wwww-server-client' directory.
 
 ##Start server(embedded Jetty) from root directory##
 
