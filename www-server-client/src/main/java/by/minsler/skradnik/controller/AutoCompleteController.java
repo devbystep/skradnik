@@ -22,11 +22,11 @@ public class AutoCompleteController extends HttpServlet {
         String text = request.getParameter("text");
         StringBuilder sb = new StringBuilder();
 
-        TranslationDAO migrationDAO = DAOInitializer.getMigrationDAO();
+        TranslationDAO translationDAO = DAOInitializer.getTranslationDAO();
 
         try {
             if (text != null && !text.trim().equals("")) {
-                List<String> words = migrationDAO.getWords(text, 10);
+                List<String> words = translationDAO.getWords(text, 10);
                 if (words.size() > 0) {
                     sb.append("<keys>");
                     for (String word : words) {

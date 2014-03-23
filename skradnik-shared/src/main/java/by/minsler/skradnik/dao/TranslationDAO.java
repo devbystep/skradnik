@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * Interface for working with Translation object.
- * Using for migration too.
  *
  * @author Dzmitry Misiuk
  * @see by.minsler.skradnik.entity.Translation

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author Dzmitry Misiuk
  */
 
-public class TestMigrationDao extends Assert {
+public class TestTranslationDao extends Assert {
 
     public static final String LITE_DB_URL = "jdbc:sqlite::resource:skradnik.db";
     public static final String LITE_DRIVER_NAME = "org.sqlite.JDBC";
@@ -33,7 +33,7 @@ public class TestMigrationDao extends Assert {
 
             Class.forName(LITE_DRIVER_NAME);
             liteConnection = DriverManager.getConnection(LITE_DB_URL);
-            TranslationDAO liteDAO = new MigrationDAOSQL(liteConnection, DBType.sqlite);
+            TranslationDAO liteDAO = new TranslationDAOSQL(liteConnection, DBType.sqlite);
         } finally {
             DbUtils.closeQuietly(liteConnection);
             DbUtils.closeQuietly(postgreConnection);
@@ -44,7 +44,7 @@ public class TestMigrationDao extends Assert {
     public void testGettingWordAndTranslationPattern() throws Exception {
         Class.forName(LITE_DRIVER_NAME);
         this.connection = DriverManager.getConnection(LITE_DB_URL);
-        TranslationDAO dao = new MigrationDAOSQL(connection, DBType.sqlite);
+        TranslationDAO dao = new TranslationDAOSQL(connection, DBType.sqlite);
         List<String> words = dao.getWords("ом", 10);
         assertTrue(words.size() > 2);
         Translation translation = dao.getTranslation(words.get(0));

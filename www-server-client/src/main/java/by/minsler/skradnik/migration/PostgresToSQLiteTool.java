@@ -2,7 +2,7 @@ package by.minsler.skradnik.migration;
 
 import by.minsler.skradnik.dao.DAOException;
 import by.minsler.skradnik.dao.TranslationDAO;
-import by.minsler.skradnik.dao.MigrationDAOSQL;
+import by.minsler.skradnik.dao.TranslationDAOSQL;
 import by.minsler.skradnik.dao.TranslationCursor;
 import by.minsler.skradnik.db.DBType;
 import by.minsler.skradnik.entity.Translation;
@@ -33,8 +33,8 @@ public class PostgresToSQLiteTool {
             Class.forName(LITE_DRIVER_NAME);
             liteConnection = DriverManager.getConnection(LITE_DB_URL);
             postgreConnection = DriverManager.getConnection(POSTGRE_DB_URL);
-            TranslationDAO liteDAO = new MigrationDAOSQL(liteConnection, DBType.sqlite);
-            TranslationDAO postgreDAO = new MigrationDAOSQL(postgreConnection, DBType.postgresql);
+            TranslationDAO liteDAO = new TranslationDAOSQL(liteConnection, DBType.sqlite);
+            TranslationDAO postgreDAO = new TranslationDAOSQL(postgreConnection, DBType.postgresql);
 
             TranslationCursor cursor = postgreDAO.getTranslations();
             Translation translation;

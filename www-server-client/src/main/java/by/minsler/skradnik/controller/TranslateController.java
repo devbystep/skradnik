@@ -23,14 +23,14 @@ public class TranslateController extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
 
         logger.info("doGet translate ");
-        TranslationDAO migrationDAO = DAOInitializer.getMigrationDAO();
+        TranslationDAO translationDAO = DAOInitializer.getTranslationDAO();
         String text = request.getParameter("text");
         String strict = request.getParameter("strict");
         logger.info("translate for " + text + "; strict: " + strict);
         String letter = request.getParameter("letter");
         try {
             if (letter != null && !letter.trim().equals("")) {
-                List<String> words = migrationDAO.getWords(letter, 1000000);
+                List<String> words = translationDAO.getWords(letter, 1000000);
                 int size = words.size();
                 if (size > 1) {
                     request.setAttribute("list", words);
@@ -38,7 +38,7 @@ public class TranslateController extends HttpServlet {
 
             } else if (text != null && !text.trim().equals("")) {
 
-                Translation translation = migrationDAO.getTranslation(text);
+                Translation translation = translationDAO.getTranslation(text);
 
                 if (translation != null) {
                     request.setAttribute("keyText", translation.getWord());
@@ -46,13 +46,13 @@ public class TranslateController extends HttpServlet {
                 } else {
                     if (strict == null) {
                         text = text.trim();
-                        List<String> list = migrationDAO.getWords(text, 10);
+                        List<String> list = translationDAO.getWords(text, 10);
                         int size = list.size();
                         logger.info("size of list of key : " + size);
                         if (size == 0) {
                         } else if (list.size() == 1) {
                             text = list.get(0);
-                            translation = migrationDAO.getTranslation(text);
+                            translation = translationDAO.getTranslation(text);
                             request.setAttribute("keyText", translation.getWord());
                             request.setAttribute("defText", translation.getTranslation());
                         } else {

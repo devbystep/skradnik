@@ -1,7 +1,7 @@
 package by.minsler.skradnik.db;
 
 import by.minsler.skradnik.dao.TranslationDAO;
-import by.minsler.skradnik.dao.MigrationDAOSQL;
+import by.minsler.skradnik.dao.TranslationDAOSQL;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -15,10 +15,10 @@ public class DAOInitializer implements ServletContextListener {
 
     private static Connection connection = null;
     private static ServletContext context = null;
-    private static TranslationDAO migrationDAO;
+    private static TranslationDAO translationDAO;
 
-    public static TranslationDAO getMigrationDAO() {
-        return migrationDAO;
+    public static TranslationDAO getTranslationDAO() {
+        return translationDAO;
     }
 
     public void contextInitialized(ServletContextEvent event) {
@@ -29,7 +29,7 @@ public class DAOInitializer implements ServletContextListener {
         try {
             Class.forName(jdbcDriverName);
             connection = DriverManager.getConnection(jdbcUrl);
-            migrationDAO = new MigrationDAOSQL(connection, DBType.sqlite);
+            translationDAO = new TranslationDAOSQL(connection, DBType.sqlite);
             context.log("jdbc driver: connection created");
             context.setAttribute("connection", connection);
         } catch (Exception e) {

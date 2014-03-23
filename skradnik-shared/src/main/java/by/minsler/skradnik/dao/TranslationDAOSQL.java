@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Dzmitry Misiuk
  */
-public class MigrationDAOSQL implements TranslationDAO {
+public class TranslationDAOSQL implements TranslationDAO {
 
     public static final String GET_TRANSLATION_BY_ID_QUERY =
             "SELECT F_ID, F_WORD, F_TRANSLATION FROM T_TRANSLATION WHERE F_ID = ?";
@@ -36,7 +36,7 @@ public class MigrationDAOSQL implements TranslationDAO {
     private PreparedStatement gettingWordsByFirstLettersStatement;
     private DBType dbType;
 
-    public MigrationDAOSQL(Connection connection, DBType dbType) throws DAOException {
+    public TranslationDAOSQL(Connection connection, DBType dbType) throws DAOException {
         this.connection = connection;
         this.dbType = dbType;
         this.initStatments();
