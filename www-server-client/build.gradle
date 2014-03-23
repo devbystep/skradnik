@@ -15,6 +15,7 @@ dependencies {
     compile 'org.xerial:sqlite-jdbc:3.7.2'
     compile 'commons-dbutils:commons-dbutils:1.5'
     compile 'org.springframework:spring-web:4.0.2.RELEASE'
+    compile 'com.google.code.gson:gson:2.2.4'
 }
 
 [jettyRunWar, jettyRun]*.httpPort = 9000

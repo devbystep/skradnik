@@ -12,7 +12,11 @@
         href="translate?letter=Э">Э</a> <a href="translate?letter=Ю">Ю</a> <a href="translate?letter=Я">Я</a></p>
     <br>
 
-    <p>Русско-белорусский словарь «Скраднік» | слов в базе: 107 106<br><a href="mailto:lit.serge2@gmail.com">https://bitbucket.org/devbystep/skradnik</a>
-    </p>
+
+        <p>Русско-белорусский словарь «Скраднік» | слов в базе: 107 106</p>
+        <br>
+        <p><a href="https://bitbucket.org/devbystep/skradnik">Исходный ко на <b>BitBucket</b></a></p>
+        <p><a href="droid/skradnik.apk" >Приложение для <b>Android</b></a></p>
+    </ul>
     <br>
 </div>

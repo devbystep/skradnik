@@ -5,8 +5,4 @@ apply plugin: 'java'
 jar.baseName 'skradnik'
 
 dependencies {
-    testCompile 'junit:junit:4.10'
-    compile 'log4j:log4j:1.2.17'
-    compile 'org.xerial:sqlite-jdbc:3.7.2'
-    compile 'commons-dbutils:commons-dbutils:1.5'
 }

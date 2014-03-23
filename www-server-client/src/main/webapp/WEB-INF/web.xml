@@ -56,6 +56,26 @@
         <url-pattern>/autocomplete</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>AutoCompleteRest</servlet-name>
+        <servlet-class>by.minsler.skradnik.controller.rest.AutoCompleteResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoCompleteRest</servlet-name>
+        <url-pattern>/rest/autocomplete</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>TranslateRest</servlet-name>
+        <servlet-class>by.minsler.skradnik.controller.rest.TranslateResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TranslateRest</servlet-name>
+        <url-pattern>/rest/translate</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

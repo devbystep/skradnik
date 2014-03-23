@@ -50,6 +50,5 @@ public class AutoCompleteController extends HttpServlet {
         }catch (DAOException e){
             throw new ServletException(e);
         }
-
     }
 }
