@@ -17,6 +17,8 @@ import java.util.List;
 public class TranslateController extends HttpServlet {
 
     private static Logger logger = Logger.getLogger(TranslateController.class);
+    private static final int MAX_WORD_COUNT = 1000000;
+    private static final int WORD_COUNT = 10;
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -26,33 +28,41 @@ public class TranslateController extends HttpServlet {
         TranslationDAO translationDAO = DAOInitializer.getTranslationDAO();
         String text = request.getParameter("text");
         String strict = request.getParameter("strict");
+
         logger.info("translate for " + text + "; strict: " + strict);
         String letter = request.getParameter("letter");
+
         try {
-            if (letter != null && !letter.trim().equals("")) {
-                List<String> words = translationDAO.getWords(letter, 1000000);
+            if (null != letter && !"".equals(letter.trim())) {
+
+                // Retrieving words from database
+                List<String> words = translationDAO.getWords(letter, MAX_WORD_COUNT);
                 int size = words.size();
+
                 if (size > 1) {
                     request.setAttribute("list", words);
                 }
 
-            } else if (text != null && !text.trim().equals("")) {
+            } else if (null != text && !"".equals(text.trim())) {
 
                 Translation translation = translationDAO.getTranslation(text);
 
-                if (translation != null) {
+                if (null != translation) {
                     request.setAttribute("keyText", translation.getWord());
                     request.setAttribute("defText", translation.getTranslation());
                 } else {
-                    if (strict == null) {
+                    if (null == strict) {
                         text = text.trim();
-                        List<String> list = translationDAO.getWords(text, 10);
+                        List<String> list = translationDAO.getWords(text, WORD_COUNT);
                         int size = list.size();
+
                         logger.info("size of list of key : " + size);
                         if (size == 0) {
+                            logger.info("size keys list is : " + size);
                         } else if (list.size() == 1) {
                             text = list.get(0);
                             translation = translationDAO.getTranslation(text);
+
                             request.setAttribute("keyText", translation.getWord());
                             request.setAttribute("defText", translation.getTranslation());
                         } else {
