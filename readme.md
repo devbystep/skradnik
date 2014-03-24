@@ -27,23 +27,23 @@ Windows
 
 ##Start server(embedded Jetty) from root directory##
 
-    ./gradlew :www-server-client:jettyRun
+    ./gradlew :skradnik:jettyRun
 
 or
 
-    ./gradlew :www-server-client:jettyRunWar
+    ./gradlew :skradnik-web:jettyRunWar
 
 This command runs jetty on http://localhost:9000/
 
 ##To stop jetty please use:##
 
-    ./gradlew :www-server-client:jettyStop
+    ./gradlew :skradnik-web:jettyStop
 
 ## Project structure ##
 
 ### Gradle modules ####
 * *skradnik-shared* - module for common libraries for server and android parts
-* *skradnik-wwww* - mudule for server parts
+* *skradnik-web* - mudule for server parts
 * *skradnik-droid* - module for android
 
 To add new project please configure *settings.gradle*
