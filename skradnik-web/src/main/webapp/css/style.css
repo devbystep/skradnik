@@ -16,7 +16,7 @@ body {
 }
 
 #flash {
-    color: creen;
+    color: green;
     background-color: rgb(240, 220, 212);
 }
 
@@ -51,7 +51,7 @@ body {
     text-align: left;
     font-family: "Open Sans", "lucida grande", "Segoe UI", arial, verdana, "lucida sans unicode", tahoma, sans-serif;
     font-size: 13px;
-    color: # #767676;
+    color: #767676;
 }
 
 div#search {
