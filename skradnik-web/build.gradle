@@ -18,8 +18,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
 }
 
-[jettyRunWar, jettyRun]*.httpPort = 9000
-[jettyRun, jettyRunWar, jettyStop]*.stopPort = 9001
+[jettyRunWar, jettyRun]*.httpPort = 9009
+[jettyRun, jettyRunWar, jettyStop]*.stopPort = 9002
 [jettyRun, jettyRunWar, jettyStop]*.stopKey = "y"
 [jettyRunWar, jettyRun]*.daemon = true
 [jettyRunWar, jettyRun]*.contextPath = ""

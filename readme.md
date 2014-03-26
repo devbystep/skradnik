@@ -33,7 +33,7 @@ or
 
     ./gradlew :skradnik-web:jettyRunWar
 
-This command runs jetty on http://localhost:9000/
+This command runs jetty on http://localhost:9009/
 
 ##To stop jetty please use:##
 
@@ -54,3 +54,7 @@ To add new project please configure *settings.gradle*
 * *setting.gradle* - for configuration project with multi modules
 * *gradle* - gradle wrapper files
 * *gradlew* and *gradlew.bat* - gradle wrapper. It allow build project without installation Grade
+
+
+
+[![Build Status](https://drone.io/bitbucket.org/devbystep/skradnik/status.png)](https://drone.io/bitbucket.org/devbystep/skradnik/latest)
