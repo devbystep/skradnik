@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import by.minsler.skradnik.SkradnikDatabase;
@@ -50,24 +50,35 @@ public class SqliteDAO implements TranslationDAO {
 
     @Override
     public Translation getTranslation(String word) throws DAOException {
-
-
-        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-        String sqlQuery = "select F_TRANSLATION from T_TRANSLATION where F_WORD='"+word +"' limit 1";
-        Cursor c = db.rawQuery(sqlQuery,null);
+        String sqlQuery = "select F_TRANSLATION from T_TRANSLATION where F_WORD='" + word + "' limit 1";
+        Cursor c = db.rawQuery(sqlQuery, null);
         c.moveToFirst();
         Translation translation = new Translation();
-        if(c.getCount() == 0) {
+        if (c.getCount() == 0) {
             translation.setTranslation("не найдено");
         } else {
-           String translationText = c.getString(0);
-           translation.setTranslation(translationText);
+            String translationText = c.getString(0);
+            translation.setTranslation(translationText);
         }
         return translation;
     }
 
     @Override
     public List<String> getWords(String pattern, int maxCount) throws DAOException {
-        return null;
+        String sqlQuery = "select F_WORD from t_translation where F_WORD like '"
+                + pattern +
+                "%' limit " + maxCount;
+        Cursor c = db.rawQuery(sqlQuery, null);
+        boolean hasFirst = c.moveToFirst();
+        List<String> words = new ArrayList<String>();
+        int count = c.getCount();
+
+        if (hasFirst) {
+            for(int i =0; i < count; i++){
+                c.moveToPosition(i);
+                words.add(c.getString(0));
+            }
+        }
+        return words;
     }
 }

@@ -9,25 +9,86 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import by.minsler.skradnik.dao.DAOException;
 import by.minsler.skradnik.dao.TranslationDAO;
-import by.minsler.skradnik.ds.SkarnikOpenShiftDAO;
 import by.minsler.skradnik.ds.SqliteDAO;
 import by.minsler.skradnik.entity.Translation;
 
-import java.util.Arrays;
+
+
 
 public class MainActivity extends ActionBarActivity {
 
 
+
+    private class DbAutoCompleteAdapter extends ArrayAdapter<String> implements Filterable {
+        private List<String> resultList;
+
+        public DbAutoCompleteAdapter(Context context, int textViewResourceId) {
+            super(context, textViewResourceId);
+        }
+
+        @Override
+        public int getCount() {
+            return resultList.size();
+        }
+
+        @Override
+        public String getItem(int index) {
+            return resultList.get(index);
+        }
+
+        @Override
+        public Filter getFilter() {
+            Filter filter = new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+                    FilterResults filterResults = new FilterResults();
+                    if (constraint != null) {
+                        // Retrieve the autocomplete results.
+
+                        try {
+                            resultList = translationDao.getWords(wordEdit.getText().toString(), 5);
+                        } catch (DAOException e) {
+                            resultList = new ArrayList<String>();
+                        }
+
+                        // Assign the data to the FilterResults
+                        filterResults.values = resultList;
+                        filterResults.count = resultList.size();
+                    }
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+                    if (results != null && results.count > 0) {
+                        notifyDataSetChanged();
+                    } else {
+                        notifyDataSetInvalidated();
+                    }
+                }
+            };
+            return filter;
+        }
+    }
+
     public static final String PLEASE_ENTER_WORD = "введите слово для поиска";
-    private EditText wordEdit;
+
+    private AutoCompleteTextView wordEdit;
     private TextView wordView;
     private Button wordButton;
-
     private TranslationDAO translationDao;
 
     @Override
@@ -36,8 +97,12 @@ public class MainActivity extends ActionBarActivity {
         //todo set translation dao by setting menu
         this.translationDao = new SqliteDAO(this);
         setContentView(by.minsler.skradnik.app.R.layout.activity_main);
-        wordEdit = (EditText) findViewById(by.minsler.skradnik.app.R.id.word_translate);
+        wordEdit = (AutoCompleteTextView) findViewById(by.minsler.skradnik.app.R.id.word_translate);
+        ArrayAdapter<String> adapter = new DbAutoCompleteAdapter(this,
+                android.R.layout.simple_dropdown_item_1line);
         wordView = (TextView) findViewById(by.minsler.skradnik.app.R.id.view_translate);
+        wordEdit.setAdapter(adapter);
+
         wordButton = (Button) findViewById(by.minsler.skradnik.app.R.id.button_translate);
         wordView.setMovementMethod(new ScrollingMovementMethod());
     }
