@@ -15,6 +15,7 @@ import android.widget.TextView;
 import by.minsler.skradnik.dao.DAOException;
 import by.minsler.skradnik.dao.TranslationDAO;
 import by.minsler.skradnik.ds.SkarnikOpenShiftDAO;
+import by.minsler.skradnik.ds.SqliteDAO;
 import by.minsler.skradnik.entity.Translation;
 
 import java.util.Arrays;
@@ -33,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //todo set translation dao by setting menu
-        this.translationDao = SkarnikOpenShiftDAO.getInstance();
+        this.translationDao = new SqliteDAO(this);
         setContentView(by.minsler.skradnik.app.R.layout.activity_main);
         wordEdit = (EditText) findViewById(by.minsler.skradnik.app.R.id.word_translate);
         wordView = (TextView) findViewById(by.minsler.skradnik.app.R.id.view_translate);
@@ -82,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
                     publishProgress(translation.getTranslation());
                 }
             } catch (DAOException e) {
-                wordView.setText("Eroor: " + e.getMessage());
+                wordView.setText("Error: " + e.getMessage());
             }
             return null;
         }
