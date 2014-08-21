@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Скрадник</string>
+    <string name="hello_world">Hello Genymotion from Android Studio!</string>
+    <string name="action_settings">Настройки</string>
+    <string name="button_name">Перевести</string>
+
+</resources>
